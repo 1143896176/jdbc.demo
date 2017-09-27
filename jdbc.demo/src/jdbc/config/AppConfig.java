@@ -8,7 +8,7 @@ public class AppConfig {
 
 	static {
 		try {
-			prop.load(AppConfig.class.getResourceAsStream("config.properties"));
+			prop.load(AppConfig.class.getResourceAsStream("config-oracle.properties"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

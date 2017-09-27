@@ -9,10 +9,10 @@ releaseResources
 	CRUD	-> 变 ： sql ， params  -->  配置分离
 	1. 增删改
 	2. 查询	
-		1. select 内容 from Table where .... 能够将结果构造成Bean
+		1. select 内容 from Table where .... 能够将结果构造成Bean    select * from table 
 		2. select a.x , a.y , a.z , b.m , c.n from a,b,c : result > invoke
 
-	3. 反射机制	Apache-beanUtils
+	3. 反射机制	Apache-beanUtils : BeanUtils.populate(obj , maps )    
 	4. 泛型DAO
 	
 2.extends --> apache-dbutils , spring-data-jdbc

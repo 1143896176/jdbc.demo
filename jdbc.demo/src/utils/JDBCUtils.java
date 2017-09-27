@@ -5,19 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import jdbc.config.AppConfig;
+
 public class JDBCUtils {
-	
-	
-	private static String URL = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
-	private static String NAME = "hr";
-	private static String PWD = "oracle";
 	
 	private Connection conn;
 	
 	public void openConnection() {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			conn = DriverManager.getConnection(URL , NAME , PWD) ;
+			Class.forName(AppConfig.DRIVER);
+			conn = DriverManager.getConnection(AppConfig.URL , AppConfig.NAME , AppConfig.PWD) ;
 		
 		} catch (Exception e) {
 			e.printStackTrace();

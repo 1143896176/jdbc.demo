@@ -3,7 +3,7 @@ package jdbc.wrap;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Timestamp;
+import java.sql.ResultSet;
 
 import jdbc.model.Stu;
 import utils.JDBCUtils;
@@ -20,9 +20,28 @@ public class TestCase2 {
 //		Stu stu = new Stu(0 , "haha6" , 93 , new Timestamp(System.currentTimeMillis()));
 //		saveStu2(stu);
 		
-		removeStu(10);
-		
+//		removeStu(10);
+		queryStu();
 	}
+	
+	
+	public static void queryStu() {
+		JDBCUtils utils = new JDBCUtils();
+		
+		String sql = "select *  from STU";
+		Object[] params = { null };
+		
+		ResultSet rs = utils.executeQuery(sql, null);
+		
+		try {
+			while(rs.next()) {
+				System.out.println("SID : " + rs.getInt(1) + ", SNAME : " + rs.getString(2) + " , " + rs.getInt(3) + " , " + rs.getTimestamp(4)); 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void removeStu(int id) {
 		JDBCUtils utils = new JDBCUtils();

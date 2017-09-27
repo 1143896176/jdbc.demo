@@ -3,6 +3,7 @@ package utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class JDBCUtils {
 	
@@ -41,6 +42,29 @@ public class JDBCUtils {
 			e.printStackTrace();
 		}
 		return row;
+	}
+	
+	//适用于多表查询
+	public ResultSet executeQuery(String sql , Object... params) {
+		openConnection();
+		System.out.println(sql);
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			if(params!=null && params.length > 0) {
+				for (int i = 0; i < params.length; i++) {
+					ps.setObject(i+1 , params[i]);
+				}
+			}
+			rs = ps.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return rs;
 	}
 
 }
